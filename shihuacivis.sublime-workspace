@@ -1,0 +1,492 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"li",
+				"listen"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"no",
+				"normal"
+			],
+			[
+				"fff",
+				"ffffff"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"non",
+				"none"
+			],
+			[
+				"border-r",
+				"border-radius"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"re",
+				"relative"
+			],
+			[
+				"ex",
+				"text-align"
+			],
+			[
+				"d",
+				"display"
+			],
+			[
+				"ck",
+				"background"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"fp",
+				"fp1"
+			],
+			[
+				"cen",
+				"center"
+			],
+			[
+				"ef",
+				"left"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"pr",
+				"prototype"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"func",
+				"func"
+			],
+			[
+				"sho",
+				"should"
+			],
+			[
+				"cons",
+				"constructor"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"ov",
+				"overflow"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"sl",
+				"slideDown"
+			],
+			[
+				"n",
+				"nP"
+			],
+			[
+				"ng-",
+				"ng-bind	AngularJS"
+			],
+			[
+				"get",
+				"getStyle"
+			],
+			[
+				"o",
+				"oSt"
+			],
+			[
+				"se",
+				"selector"
+			],
+			[
+				"full",
+				"fullpage"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "p",
+		"selected_items":
+		[
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"docB",
+				"DocBlockr: Reparse comment block"
+			],
+			[
+				"do",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"lara",
+				"Set Syntax: PHP - Laravel Blade"
+			],
+			[
+				"la",
+				"LiveStyle: Apply Patch"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Disable Package"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/shihua/Documents/shihuacivis"
+	],
+	"file_history":
+	[
+		"/Users/shihua/Documents/workspace/zhq/fis-conf.js",
+		"/Users/shihua/Documents/workspace/zhq/src/css/index.less",
+		"/Users/shihua/Documents/workspace/zhq/src/js/common/index.js",
+		"/Users/shihua/Documents/workspace/zhq/src/index.html",
+		"/Users/shihua/Documents/workspace/zhq/src/css/fullpage.css",
+		"/private/etc/hosts",
+		"/Users/shihua/Documents/index 2.html",
+		"/Users/shihua/Documents/workspace/zhq/src/js/lib/other.js",
+		"/Users/shihua/Library/Application Support/Sublime Text 3/Packages/ConvertToUTF8/ConvertToUTF8.sublime-settings",
+		"/Users/shihua/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/shihua/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/shihua/Library/Application Support/Sublime Text 3/Packages/User/ConvertToUTF8.sublime-settings",
+		"/Users/shihua/Documents/workspace/zzzhq/j/fullpage.js",
+		"/Users/shihua/Documents/workspace/zzzhq/j/index.js",
+		"/Users/shihua/Documents/workspace/zzzhq/h/index.html",
+		"/Users/shihua/Documents/workspace/zzzhq/c/index.css",
+		"/Users/shihua/百度云同步盘/bang/index.html",
+		"/Users/shihua/Documents/workspace/zzzhq/index.html",
+		"/Users/shihua/Downloads/fullpage.js",
+		"/Users/shihua/Documents/workspace/zzzhq/c/base.css",
+		"/Users/shihua/Documents/workspace/zhq/index.html",
+		"/Users/shihua/Documents/workspace/feg/fis3-project-demo/fis-conf.js",
+		"/Users/shihua/Documents/workspace/feg/fis3-project-demo/src/js/lib/baiduTemplate.js",
+		"/Users/shihua/Documents/workspace/feg/fis3-project-demo/src/template/index.tmpl",
+		"/Users/shihua/Documents/workspace/augular/readme.md",
+		"/Users/shihua/Documents/workspace/kata/sugar.js",
+		"/Users/shihua/Documents/workspace/kata/xdd.js",
+		"/Users/shihua/Documents/workspace/kata/framework.js",
+		"/Users/shihua/Documents/workspace/augular/prototype.js",
+		"/Users/shihua/Documents/shihuacivis/source/_posts/byeHardCode.md",
+		"/Users/shihua/Documents/shihuacivis/source/_posts/jsprototype.md",
+		"/Users/shihua/Documents/workspace/constructor/prototype.js",
+		"/Users/shihua/Documents/workspace/kata/class.js",
+		"/Users/shihua/Documents/workspace/kata/lib/react.html",
+		"/Users/shihua/Documents/workspace/kata/reactjs.js",
+		"/Users/shihua/Documents/workspace/vue/vue.js",
+		"/Users/shihua/Documents/workspace/kata/node_modules/should/Readme.md",
+		"/Users/shihua/Documents/workspace/constructor/angularLite.js",
+		"/Users/shihua/Documents/workspace/augular/angularLite.js",
+		"/Users/shihua/Documents/workspace/fullpage/j/fullpage.js",
+		"/Users/shihua/Documents/workspace/augular/index.html",
+		"/Users/shihua/Documents/workspace/selector/jqlite.js",
+		"/Users/shihua/Documents/workspace/selector/index.html",
+		"/Users/shihua/Library/Application Support/Sublime Text 3/Packages/User/Emmet.sublime-settings",
+		"/Users/shihua/Documents/index.html",
+		"/Applications/MAMP/htdocs/cz/app/config/app.php",
+		"/Applications/MAMP/htdocs/cz/app/config/database.php",
+		"/Applications/MAMP/htdocs/cz/app/config/local/database.php",
+		"/Applications/MAMP/htdocs/cz/public/index.php",
+		"/Users/shihua/Library/Application Support/Sublime Text 3/Packages/User/PHP.sublime-settings",
+		"/Users/shihua/Documents/workspace/cz/public/robots.txt",
+		"/Users/shihua/Documents/workspace/cz/public/index.php",
+		"/Volumes/MAMP & MAMP PRO 3.4/MAMP_PRO_3.4_KEY.rtf",
+		"/usr/local/mysql-5.6.26-osx10.8-x86_64/my.cnf",
+		"/usr/local/mysql-5.6.26-osx10.8-x86_64/support-files/magic",
+		"/usr/local/mysql-5.6.26-osx10.8-x86_64/support-files/my-default.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/ndb_binlog/my.cnf",
+		"/private/etc/hosts.equiv",
+		"/Users/shihua/.Trash/mysql-5.6.26-osx10.8-x86_64/README",
+		"/Users/shihua/.Trash/mysql-5.6.26-osx10.8-x86_64/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/ndb_rpl/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/ndb/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/rpl_ndb/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/ndb_team/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/rpl/extension/bhs/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/include/default_mysqld.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/ndb_big/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/suite/federated/my.cnf",
+		"/Users/shihua/Downloads/mysql-5.6.24-osx10.9-x86_64/mysql-test/include/default_my.cnf",
+		"/Volumes/Untitled/wampCQ/wamp/bin/mysql/mysql5.6.12/my.ini",
+		"/Users/shihua/Documents/workspace/knightBang/index.html"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"配置",
+			"btn-share",
+			"btn-sha",
+			".btn",
+			"on('click', function(e)",
+			"js-nextBtn",
+			"share",
+			"10",
+			"5s",
+			"3s",
+			"4s",
+			"btn-sha",
+			"1.5",
+			"btnShadow",
+			"1.72rem",
+			"btn-pl",
+			"btn-sha",
+			"translate(0, 0)",
+			"translate(-25%, -25%)",
+			"-27px",
+			"0",
+			"15px",
+			"generate-columns",
+			"ut'f",
+			"22",
+			"12",
+			".l1 {\n  font-size: .46rem;\n  line-height: .46rem;\n  color: #111111;\n  margin-top: .16rem;",
+			"23rem",
+			"23",
+			"09",
+			"23",
+			"12",
+			"100% 100%",
+			"float: left;",
+			"3.51",
+			"ul li",
+			"09",
+			".page-nav",
+			"section-four",
+			"section-six",
+			"two",
+			"chapter",
+			"three",
+			"2-1",
+			"<div class=\"btn-play\"></div>  ",
+			"p2_js",
+			"three",
+			"section-two",
+			"l2",
+			"section-one",
+			"<a href=\"javascript:;\" class=\"tv-next-btn js-nextBtn\"><img src=\"../i/common-next.png\" alt=\"\"></a>",
+			"Person",
+			"Person1",
+			"Person",
+			"new Class",
+			"Class",
+			"func",
+			"key",
+			"nP",
+			"slideDown",
+			"n",
+			"nMoveX",
+			"n",
+			"my",
+			"mx",
+			"move",
+			"sf",
+			"open",
+			"vhost",
+			"dummy-host.example",
+			"33",
+			"onload",
+			"_jsCache",
+			"img",
+			"_jsCache",
+			"load"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "shihuacivis.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

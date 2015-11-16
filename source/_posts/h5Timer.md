@@ -1,0 +1,151 @@
+title: HTML5应用中的计时器的三种方案
+---
+
+在做HTML5游戏或者单页应用时我们常常需要使用到计时器模块，比如游戏中的倒计时功能。
+## 常规方案
+最常见的计时器方案一般无非`setTimeout`和`setInterval`，基本上已经被玩坏了……
+```javascript
+var nTimeCount = 15;
+
+// setTimeout
+function fCountTime() {
+  if (nTimeCount > 0) {
+    nTimeCount--;
+    setTimeout(function() {
+      fCountTime();
+    }, 1000);
+  } else {
+    console.log('时间到');
+  }
+}
+fCountTime();
+
+// setInterval
+function fCountTime() {
+  if (nTimeCount > 0) {
+    nTimeCount--;
+  } else {
+    clearInterval(timer);
+    timer = null;
+    console.log('时间到');
+  }
+}
+var timer = setInterval(function() {
+  fCountTime();
+}, 1000);
+```
+
+## 存在问题
+在pc上看，这样的实现方法并没有太大的问题，然而到了移动端似乎就会出现下面两个问题。
+1. 在移动端上，如IOS，当用户拖曳整张页面时，页面是停止渲染工作的，这时候setTimeout和setInterval也会随之暂停，那么当用户拖曳结束时，时间可能就已经延迟了不少。
+2. 在一些性能相对已经比较慢的手机上玩一些相对操作比较多、画面更新幅度大的游戏时，如IOS7下的iphone4s，会出现页面卡顿，以导致setTimeout、setInterval触发时间延迟被拖慢的问题。
+
+## 解决方案
+首先解决第一个问题，这个利用简单nTimeCount计数器的方案在setTimeout和setInterval有不可靠（这里指不能保证每一秒执行一次）的风险时，显然是不靠谱的，靠谱的方案还是得根据准确的时间进行判断。以setTimeout为例：
+```javascript
+var nTimeCount = 15;
+var nStartTime = 0;
+var nEndTime = 0;
+// setTimeout
+function fCountTime() {
+  if (0 == nStartTime) {
+    nStartTime = +new Date(); // 初始化记下开始计时的时间戳
+  }
+  nEndTime = +new Date(); // 初始化记下开始计时的时间戳
+  nPassSec = Math.floor((nEndTime - nStartTime) / 1000); // 时间戳相减获得pass的毫秒数， /1000向下取整获得过去的秒数
+  nTimeCount -= nPassSec; // 时间总数减去pass的秒数获得所剩的时间
+  if (nTimeCount > 0) {
+    setTimeout(function() {
+      fCountTime();
+    }, 1000);
+  } else {
+    console.log('时间到');
+  }
+}
+fCountTime();
+```
+
+这样似乎可以保证时间至少相对靠谱了，那么来考虑第二个问题——性能问题。
+当然，这时候可以适当降低setTimout的时间片来减少性能对计时的影响，但似乎**HTML5已经推出了更好的解决方案**。
+
+## 这才是重点
+这里要推出的方法是HTML5中的新方法:
+requestAnimationFrame， 它可以在浏览器每渲染一帧后立即执行回调，而不会像setTimeout一样有延迟风险。
+现代浏览器在正常情况下每秒会渲染60帧画面，也就是会执行60次requestAnimationFrame的回调，你可以把它等价为一个16.7毫秒的setTimeout模式。
+下面是一个兼容性的解决方案，并定义了一个计时器，
+可以满足每一秒、每一帧都有对应回调可以调用，同时还有暂停、继续计时的功能：
+```javascript
+// 先将api进行兼容性封装
+(function() {
+  var lastTime = 0;
+  var vendors = ['webkit', 'moz'];
+  for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // Webkit中此取消方法的名字变了
+                                  window[vendors[x] + 'CancelRequestAnimationFrame'];
+  }
+
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function(callback, element) {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+      var id = window.setTimeout(function() {
+        callback(currTime + timeToCall);
+      }, timeToCall);
+      lastTime = currTime + timeToCall;
+      return id;
+    };
+  }
+  if (!window.cancelAnimationFrame) {
+    window.cancelAnimationFrame = function(id) {
+      clearTimeout(id);
+    };
+  }
+}());
+
+// 定义一个计时器对象
+var _timeCount = {
+  restTime: 0
+, totalTime: 0
+, startTime: 0
+, dormant: false
+, count: function(){
+    var self = _timeCount;
+    if(self.dormant) return;
+    var cur = +new Date();
+    var s = self.totalTime - Math.floor((cur - self.startTime)/1000);
+    if(s != self.restTime){
+      self.restTime--;
+      self.secPass();
+    }
+    if(self.restTime != 0){
+      requestAnimationFrame(_timeCount.inter);
+    }else{
+      _timeCount.finish();
+    }
+  }
+, inter: function() {
+    // 每帧执行的回调
+    _timeCount.count();
+  }
+, secPass: function() {
+    // 每秒执行的回调
+  }
+, pause: function() {
+    // 暂停
+    this.dormant = true;
+    this.totalTime = this.restTime;
+  }
+, keepOn: function() {
+    // 继续计时
+    this.startTime = +new Date();
+    this.dormant = false;
+    this.count();
+  }
+, finish: function() {
+    // 时间到
+  }
+}
+```
+
+然而，网上有一些大神也指出，requestAnimationFrame的性能其实并没有比setTimeout高到哪里去，甚至还不如后者，不过，年轻人嘛，不就应该多多尝试新事物吗？

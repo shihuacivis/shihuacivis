@@ -1,0 +1,125 @@
+title: js实现基于发布/订阅机制的事件管理器（观察者模式）
+---
+
+处理事件是web前端开发中出现最频繁的业务之一。在处理这类业务时，我们通常的思路就是基本是这样的：
+```javascript
+$('btn').on('click', function(){
+    a.show();
+    b.hide();
+    c.hide();
+})
+```
+btn发生点击事件（事件触发）， 然后去分别执行a、b、c模块下的对应事件。这样是没有什么大问题的。
+但设想一下下面3种情况：
+1. 假如程序很大，很多模块，btn的这个事件要去触发100个模块下对应的不同的事件……
+2. 今天btn可能只触发3个模块的方法，假如明天业务调整还要去触发d模块的功能……
+3. 当btn触发时，c模块处于忙碌中不能响应，那势必btn与c模块要有业务上的交集，所以写btn的开发者可能还要去了解c模块的运行逻辑……
+
+## 为什么需要发布/订阅
+那么这个情况下就适合使用发布/订阅机制（pub/sub）进行事件管理。
+发布/订阅也被称之为观察者模式。我要用观察者模式于事件管理中主要是为了满足以下诉求：
+我希望模块与模块之间更加的独立。A模块不需要知道B模块中具体的执行逻辑，它只要知道我触发了btn事件，你B模块能知道我触发了并做你自己该做的事就可以了。
+以此来首先确保我开发A模块时不需要了解我应该调用B模块的那个函数方法。另外，将来加入B模块、C模块时，A模块基本不用进行太多业务调整。
+
+## 实现思路
+宏观来看，观察者模式其实有点类似于一个管理者，它手上有一份名单，知道谁谁谁订阅了事件A，当事件A发生之后只需要通知这个管理者，管理者就会杜泽去通知订阅了事件A的受众，而受众和事件的触发者之间不需要了解彼此。
+那么我们就需要完成以下几个功能：
+1. 存取订阅关系的数据（Data）
+2. 订阅事件（sub）
+3. 发布事件（pub）
+4. 取消订阅（unsub）
+
+首先，订阅关系基本上是 '事件 —— 订阅者队列' 这样的对应形式。
+其次，在js中订阅者实际上想知道发生的某件事件，然后要去执行方法，因此事件对应的队列的存的都是要去执行function
+因此我们可以考虑将订阅者（function）存于一个数组中，然后利用js的object的键值特性保存这些队列。
+```javascript
+oList = {
+  '事件A': [functionA, functionB]
+, '事件B': [functionC, functionD]
+}
+```
+这样看来就很好理解了：
+1. 订阅事件（sub）：将对应事件的数组中push一个要执行的function（`引用类型`，实际上是指向function的内存地址）
+2. 发布事件（pub）：把对应数组中的function都执行一遍
+3. 取消订阅（unsub）： 将对应的function从数组中移除
+
+## jQuery实现
+如果环境中有jQuery，那么实现观察者模式的方法很简单，我们可以将订阅关系数据存到$({}) 这个jQuery对象中，赋予其trigger、on、off方法。用trigger、on方法可以轻松实现上述发布和订阅的功能。
+```javascript
++function($) {
+  // 订阅一个事件管理器对象
+  window.EventCenter = {
+    o: $({})
+  , sub: function() {
+      var self = this;
+      self.o.on.apply(self.o, arguments);
+    }
+  , unsub: function() {
+      var self = this;
+      self.o.off.apply(self.o, arguments);
+    }
+  , pub: function() {
+      var self = this;
+      self.o.trigger.apply(self.o, arguments);
+    }
+  };
+}(jQuery);
+```
+
+## 原生js实现
+原生js中由于没有封装on、off这两个实用的方法，因此实现起来相对要费力一些。
+特别在取消订阅这个功能上回发现一个历史性的深坑：
+最早的时候我实现unsub的思路是去遍历数组，判断数组元素（function）是否与所选的function相等……
+那么问题就来了，如何判断function相同（等）……
+网上有大神说将function硬转成字符串判断，这种做法在一定情况下是可行的，但是并不是100%准确。
+所以这个问题搁置了大半年。
+直到最近我用jQuery的实现版本发现并没有出现function判断不准的问题，于是我潜心研究了一下jQuery的实现思路……
+发现它相当聪（wei）明(suo)的引入了一个guid的概念（global unique id）,通过guid来识别方法，当一个function AAA订阅一个事件时，它会悄悄的在AAA里"种"下一个guid属性，它的值是唯一的，后期jQuery都是通过这个guid来识别方法，而不是硬转字符串的方法（stupid）
+所以，这个问题解决了……
+**所以说jQuery大法好啊！**
+
+```javascript
+var EventManager = {
+  _listeners: {}
+, guid: 1
+, sub: function(type, fn) {
+    if (typeof this._listeners[type] === "undefined") {
+      this._listeners[type] = [];
+    }
+    if (typeof fn === "function") {
+      this._listeners[type].push(fn);
+      fn.guid = this.guid;
+      this.guid++;
+    }
+    return this;
+  }
+, pub: function(type, data) {
+    var arrayEvent = this._listeners[type];
+    if (arrayEvent instanceof Array) {
+      for (var i=0, length=arrayEvent.length; i < length; i+=1) {
+        if (typeof arrayEvent[i] === "function") {
+          arrayEvent[i](data);
+        }
+      }
+    }
+    return this;
+  }
+, unsub: function(type, fn) {
+    var arrayEvent = this._listeners[type];
+    if (typeof type === "string" && arrayEvent instanceof Array) {
+      if (typeof fn === "function") {
+        for (var i=0, length=arrayEvent.length; i < length; i+=1){
+          if (arrayEvent[i].guid === fn.guid) {
+            // 通过guid识别function
+            this._listeners[type].splice(i, 1);
+            break;
+          }
+        }
+      }else{
+        delete this._listeners[type];
+      }
+    }
+    return this;
+  }
+};
+```

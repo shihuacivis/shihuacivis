@@ -1,0 +1,50 @@
+title: jQuery获取鼠标滑入div的方向
+---
+
+大学时期，人人上曾经有一个疯传的网网站——[大软坊](http://app.hustonline.net/major)。
+上面有一个很酷的效果，当鼠标划过菜单时，它能识别你是从哪个方向滑入和滑出，并执行不同的动画效果。
+当时觉得很酷炫，就自己动了下脑筋研究了这个问题。
+
+## 思路
+把div当作一个矩形，用两条对角线将矩形分成四个区域（如下图），那么当鼠标滑入/滑出div的
+瞬间会触发一个mouseenter/mouseleave事件，同时我们可以获取触发该事件时
+鼠标所在坐标点，那么通过判断这个坐标点落于上面四个区域中的哪一个区域来判别是从上/下/左/右滑出的。
+![cmd-markdown-logo](/img/2015090901.jpg)
+
+## 实现
+这段代码是比较早期写的啦，有很多可以优化的点，先不说了。主要是用jquery的offset()轻松获取相关点的坐标，剩下的就是数学问题了。
+所以说jQuery大法好啊!
+线上的DEMO地址:[点我看线上demo](http://demo.qpdiy.com/sh/mouseDirection/index.html)
+```javascript
+    $('.name').on('mouseenter', function(e){
+      var divX = $(this).offset().left;   //div的左上角X坐标
+      var divY = $(this).offset().top;    //div的左上角Y
+      var width = $(this).width();
+      var height = $(this).height();
+      var mX = e.pageX;                   //鼠标进入div中的点坐标
+      var mY = e.pageY;                   //鼠标进入div中的点坐标
+      var rx = mX - divX;                 //相减得出要判断的点的横坐标
+      var ry = mY - divY;                 //相减得出要判断的点的纵坐标
+      var scale = height/width;           //对角线1的斜率
+      tmp = scale * rx;                   //可以理解为x坐标下对角线上的点...那么 300-tmp就是对角线2上的点
+      $pic = $(this).find('.pic');
+      $pic.removeAttr('class').addClass('pic');
+      if(ry < tmp && ry < (300 - tmp)){
+        $('#im').html('上入');
+        $pic.addClass('from-top');
+      } else if(ry < (300 - tmp) && ry > tmp){
+        $('#im').html('左入');
+        $pic.addClass('from-left');
+      } else if(ry > (300 - tmp) && ry < tmp){
+        $('#im').html('右入');
+        $pic.addClass('from-right');
+      } else {
+        $('#im').html('下入');
+        $pic.addClass('from-bottom');
+      }
+      $pic.css('z-index',3);
+
+    })
+    
+```
+`written in 2014/10 本文搬运自LOFTER，让LOFTER纯粹po图！ `
