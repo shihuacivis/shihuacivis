@@ -1,7 +1,10 @@
 title: js中的function小记
+date: 2015-10-11
 ---
 
 最近参加了一个js方面的培训，讲师用两天时间给我们回顾和剖析了function的种种，的确有所收获，小记于此。
+
+<!-- more -->
 
 
 ## function是js中的一等公民

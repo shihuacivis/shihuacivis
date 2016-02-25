@@ -4,7 +4,7 @@
 
 # Site
 title: shihuacivis' life
-subtitle: 口号：狗头拍牛片，css3大法好，杰艾斯拯救一切！
+subtitle: 西斗门路前端手艺人
 description: web前端 html5 css3 javascript cocos2d-js
 author: 石华
 language:
@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://shihuacivis.github.io/
+url: http://www.shihua.im
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -30,7 +30,7 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
-titlecase: false # Transform title into titlecase
+titlecase: true # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
@@ -63,11 +63,19 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: pacman
+theme: utakata
 
 # Deployment
-## Docs: http://hexo.io/docs/deployment.html
+# Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
   repo: https://github.com/shihuacivis/shihuacivis.github.io.git
   branch: master
+
+# deploy:
+#   type: ftpsync
+#   host: www.shihua.im
+#   user: www
+#   pass: cAEDPBe5P
+#   remote: ./blog
+#   port: 21
